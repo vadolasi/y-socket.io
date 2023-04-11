@@ -37,6 +37,11 @@ export interface ProviderConfiguration {
    * (Optional) Add the authentication data
    */
   auth?: { [key: string]: any }
+  /**
+   * (Optional) Set the socket.io parser
+   * @see https://socket.io/docs/v4/server-initialization/#parser
+   */
+  parser?: any
 }
 
 /**
@@ -110,7 +115,8 @@ export class SocketIOProvider extends Observable<string> {
     awareness = new AwarenessProtocol.Awareness(doc),
     resyncInterval = -1,
     disableBc = false,
-    auth = {}
+    auth = {},
+    parser = null
   }: ProviderConfiguration) {
     super()
     while (url[url.length - 1] === '/') {
@@ -128,7 +134,8 @@ export class SocketIOProvider extends Observable<string> {
       autoConnect: false,
       transports: ['websocket'],
       forceNew: true,
-      auth: auth
+      auth: auth,
+      parser: parser
     })
 
     this.doc.on('update', this.onUpdateDoc)
