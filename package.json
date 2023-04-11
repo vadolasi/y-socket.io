@@ -1,5 +1,5 @@
 {
-  "name": "@vordex/y-socket.io",
+  "name": "codelabs.y-socket.io",
   "version": "1.1.0",
   "description": "Socket IO Connector for Yjs (Inspired by y-websocket)",
   "keywords": [
